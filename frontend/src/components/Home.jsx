@@ -9,7 +9,7 @@ function Home()
       {/* ShadCN UI Button */}
       <div className="flex flex-col items-center justify-center min-h-svh">
       <Button className="bg-slate-900">Click me</Button>
-    </div>
+      </div>
 
       {/* Navigate to About Page */}
       <Link to="/about">
