@@ -1,3 +1,10 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # Logs
 logs
 *.log
@@ -22,3 +29,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.postcssrc
+tailwind.config.js
+postcss.config.js
+
+*.gz
+*.zip
+*.tar
+.vscode/
+.DS_Store
+
+.vite/
