@@ -1,13 +1,18 @@
 import express from "express";
-import mongoose from "mongoose";
 import router from "./routes/router.js";
 import dotenv from 'dotenv';
 import cors from 'cors';
+import connectDB from "./config/db.js";
+import  User  from "./models/User.js";
+import  Dataset  from "./models/Dataset.js";
+import  Chart  from "./models/Chart.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT;
+app.use(express.json());
+
+connectDB();
 
 app.use(router);
 
@@ -19,11 +24,5 @@ app.use(
     })
 );
 
-mongoose.connect(process.env.MONGODB_URI)
-.then(()=>{
-    app.listen(PORT,()=> 
-        console.log(`Express server running on: http://localhost:${PORT}`));
-})
-.catch((error)=>{
-    console.error(error)
-})
+app.listen(PORT,()=> 
+    console.log(`Express server running on: http://localhost:${PORT}`));

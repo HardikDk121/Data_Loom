@@ -2,5 +2,5 @@
     "exec": "node server.js",
     "ext": "js",
     "watch": ["server.js"]
-  }
+}
   
