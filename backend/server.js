@@ -3,9 +3,6 @@ import router from "./routes/router.js";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from "./config/db.js";
-import  User  from "./models/User.js";
-import  Dataset  from "./models/Dataset.js";
-import  Chart  from "./models/Chart.js";
 
 dotenv.config();
 const app = express();
@@ -14,8 +11,6 @@ app.use(express.json());
 
 connectDB();
 
-app.use(router);
-
 app.use(
     cors({
         origin: "http://localhost:5173", // Replace with your React frontend URL
@@ -23,6 +18,8 @@ app.use(
         credentials: true, // Allow cookies (if needed)
     })
 );
+app.use("/api/users",router);
+
 
 app.listen(PORT,()=> 
-    console.log(`Express server running on: http://localhost:${PORT}`));
+    console.log(`Express server running on: http://localhost:${PORT} `))

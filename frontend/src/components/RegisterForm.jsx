@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
     Form,
     FormControl,
@@ -12,7 +14,6 @@ import {
 } from './ui/form';
 import { Input } from './ui/input';
 import { Button } from "@/components/ui/button"
-import { Dialog } from '@radix-ui/react-dialog';
 import {
     Card,
     CardContent,
@@ -20,14 +21,13 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
 const FormSchema = z.object(
     {
         email: z.string().email("Invaild email format"),
         password: z.string().min(8, "Password must be atleast 8 characters"),
         confirmPassword: z.string().min(8, "Password must be atleast 8 characters")
         ,
-        username: z.string().min(2),
+        name: z.string().min(2),
     },
 ).refine((data) => data.password === data.confirmPassword,
     {
@@ -35,18 +35,37 @@ const FormSchema = z.object(
         path: ["confirmPassword"],
     });
     
-const handleSubmit = (data)=> {
-    console.log(data);
-    console.log("Submitted");
-}
-function RegisterForm() {
+    
+    
+    function RegisterForm() {
+        const navigate = useNavigate();
+        const handleSubmit = async(data)=> 
+        {
+            try {
+                delete data.confirmPassword;
+                console.log(data);
+                const API_URL = import.meta.env.VITE_API_BASE_URL;
+                console.log(API_URL);
+                const response = await axios.post(`${API_URL}/users/register`, data, {
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                console.log(response.data);
+                const name = response.data.name;
+                navigate("/", { state: { name } });
+            }
+            catch (error)
+            {
+                console.error("Error submitting form:", error.response?.data || error.message);
+            }
+    }
     const form = useForm({
         resolver: zodResolver(FormSchema),
         defaultValues: {
             email: "",
             password: "",
             confirmPassword: "",
-            username: "",
+            name: "",
         },
     })
     return (
@@ -58,9 +77,9 @@ function RegisterForm() {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleSubmit)}>
                         <div className="space-y-4">
-                            <FormField control={form.control} name="username" render={({ field }) => (
+                            <FormField control={form.control} name="name" render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className={`text-slate-100`}>Username</FormLabel>
+                                    <FormLabel className={`text-slate-100`}>name</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex.jhon Doe" {...field} />
                                     </FormControl>
