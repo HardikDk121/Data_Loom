@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import { Link } from 'react-router-dom';
 import {
     Form,
@@ -21,16 +23,36 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertCircle } from 'lucide-react';
 const formSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
 });
-const handleSubmit = (data) =>{
-    console.log(data);
-    console.log("Submitted");
-}
 function LoginForm() {
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const handleSubmit = async(data) =>{
+        
+        try {
+            const API_URL = import.meta.env.VITE_API_BASE_URL;
+            console.log(API_URL);
+            const response = await axios.post(`${API_URL}/users/login`, data, {
+                headers: { "Content-Type": "application/json" },
+            });
+            console.log(response.data);
+            setError("");
+            const name = response.data.name;
+            navigate("/", { state: { name } });
+        }
+        catch (error) {
+            setError(error.response.data?.message || "Invalid credentials"  );
+            console.error("Error submitting form:", error.response?.data || error.message);
+        }
+        
+        
+        
+    }
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -38,7 +60,7 @@ function LoginForm() {
             password: "",
         }
     });
-    return (
+    return (<>
         <Card className={`col-start-4 col-end-10 row-span-8  bg-neutral-950 rounded-lg shadow-lg text-white  `}>
             <CardHeader>
                 <CardTitle>Login</CardTitle>
@@ -78,6 +100,15 @@ function LoginForm() {
                 </Link>
             </CardFooter>
         </Card>
+        {/* Show alert only if there's an error */}
+      {error && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+    </>
     )
 }
 export default LoginForm;

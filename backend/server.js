@@ -13,9 +13,9 @@ connectDB();
 
 app.use(
     cors({
-        origin: "http://localhost:5173", // Replace with your React frontend URL
+        origin: "http://localhost:5173", 
         methods: "GET,POST,PUT,DELETE",
-        credentials: true, // Allow cookies (if needed)
+        credentials: true, 
     })
 );
 app.use("/api/users",router);

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +14,7 @@ import {
     FormMessage
 } from './ui/form';
 import { Input } from './ui/input';
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -21,6 +22,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from 'lucide-react';
+
 const FormSchema = z.object(
     {
         email: z.string().email("Invaild email format"),
@@ -39,6 +43,7 @@ const FormSchema = z.object(
     
     function RegisterForm() {
         const navigate = useNavigate();
+        const [error, setError] = useState("");
         const handleSubmit = async(data)=> 
         {
             try {
@@ -49,14 +54,15 @@ const FormSchema = z.object(
                 const response = await axios.post(`${API_URL}/users/register`, data, {
                     headers: { "Content-Type": "application/json" },
                 });
-
+                setError("");
                 console.log(response.data);
                 const name = response.data.name;
                 navigate("/", { state: { name } });
             }
             catch (error)
             {
-                console.error("Error submitting form:", error.response?.data || error.message);
+                setError(error.response.data?.message || "Invalid credentials");
+                console.error("Error submitting form:", error.response?.data || error.message,error.response.status);
             }
     }
     const form = useForm({
@@ -69,6 +75,7 @@ const FormSchema = z.object(
         },
     })
     return (
+        <>
         <Card className={`w-full h-full col-start-4 col-end-10 row-span-8 bg-neutral-950 rounded-lg shadow-lg`}>
             <CardHeader>
                 <CardTitle className={`text-slate-100 text-3xl  `}>Register</CardTitle>
@@ -132,6 +139,15 @@ const FormSchema = z.object(
                 </Link>
             </CardFooter>
         </Card>
+        {/* Show alert only if there's an error */}
+        {error && (
+            <Alert variant="destructive" className="mb-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+            </Alert>
+        )}
+        </>
 
     )
 }

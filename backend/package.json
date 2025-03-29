@@ -13,6 +13,6 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js --watch server --watch routes --watch models --legacy-watch"
   }
 }
