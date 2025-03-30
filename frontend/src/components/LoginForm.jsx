@@ -43,6 +43,7 @@ function LoginForm() {
             console.log(response.data);
             setError("");
             const name = response.data.name;
+            
             navigate("/", { state: { name } });
         }
         catch (error) {
@@ -61,9 +62,10 @@ function LoginForm() {
         }
     });
     return (<>
-        <Card className={`col-start-4 col-end-10 row-span-8  bg-neutral-950 rounded-lg shadow-lg text-white  `}>
+        <img src="assets/images/4905827.jpg " className={`w-1/2 h-full  rounded-2xl opacity-75`} alt=""  />
+        <Card className={`w-1/4 bg-neutral-950 rounded-lg shadow-lg text-white  `}>
             <CardHeader>
-                <CardTitle>Login</CardTitle>
+                <CardTitle className={`text-slate-100 text-3xl`}>Login</CardTitle>
             </CardHeader>
             <CardContent>
                 <Form {...form}>

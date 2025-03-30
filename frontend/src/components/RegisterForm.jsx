@@ -61,7 +61,7 @@ const FormSchema = z.object(
             }
             catch (error)
             {
-                setError(error.response.data?.message || "Invalid credentials");
+                setError(error.response.data?.message || "Something went wrong please try again later");
                 console.error("Error submitting form:", error.response?.data || error.message,error.response.status);
             }
     }
@@ -76,7 +76,8 @@ const FormSchema = z.object(
     })
     return (
         <>
-        <Card className={`w-full h-full col-start-4 col-end-10 row-span-8 bg-neutral-950 rounded-lg shadow-lg`}>
+        <img src="assets/images/4905827.jpg " className={`w-1/2 h-full  rounded-2xl opacity-75`} alt=""  />
+        <Card className={`w-1/4 h-full bg-gray-950 rounded-lg shadow-lg`}>
             <CardHeader>
                 <CardTitle className={`text-slate-100 text-3xl  `}>Register</CardTitle>
             </CardHeader>
@@ -141,8 +142,8 @@ const FormSchema = z.object(
         </Card>
         {/* Show alert only if there's an error */}
         {error && (
-            <Alert variant="destructive" className="mb-4">
-            <AlertCircle className="h-4 w-4" />
+            <Alert variant="destructive" className="mt-4 block col-start-4 col-end-10 ">
+            <AlertCircle className="" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             </Alert>

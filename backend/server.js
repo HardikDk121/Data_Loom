@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./routes/router.js";
+import userRouter from "./routes/user-router.js";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from "./config/db.js";
@@ -18,7 +18,7 @@ app.use(
         credentials: true, 
     })
 );
-app.use("/api/users",router);
+app.use("/api/users",userRouter);
 
 
 app.listen(PORT,()=> 
