@@ -25,6 +25,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from 'lucide-react';
+import BackgroundImage from './BackgroundImage';
 const formSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
@@ -62,8 +63,8 @@ function LoginForm() {
         }
     });
     return (<>
-        <img src="assets/images/4905827.jpg " className={`w-1/2 h-full  rounded-2xl opacity-75`} alt=""  />
-        <Card className={`w-1/4 bg-neutral-950 rounded-lg shadow-lg text-white  `}>
+        <BackgroundImage />
+        <Card className={` bg-neutral-950 rounded-lg shadow-lg text-white col-span-4 row-span-12 h-full  `}>
             <CardHeader>
                 <CardTitle className={`text-slate-100 text-3xl`}>Login</CardTitle>
             </CardHeader>

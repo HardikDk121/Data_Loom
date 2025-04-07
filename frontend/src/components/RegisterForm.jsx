@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from 'lucide-react';
-
+import BackgroundImage from './BackgroundImage';
 const FormSchema = z.object(
     {
         email: z.string().email("Invaild email format"),
@@ -76,8 +76,8 @@ const FormSchema = z.object(
     })
     return (
         <>
-        <img src="assets/images/4905827.jpg " className={`w-1/2 h-full  rounded-2xl opacity-75`} alt=""  />
-        <Card className={`w-1/4 h-full bg-gray-950 rounded-lg shadow-lg`}>
+        <BackgroundImage />
+        <Card className={` bg-gray-950 rounded-lg shadow-lg col-span-4 row-span-12`}>
             <CardHeader>
                 <CardTitle className={`text-slate-100 text-3xl  `}>Register</CardTitle>
             </CardHeader>
