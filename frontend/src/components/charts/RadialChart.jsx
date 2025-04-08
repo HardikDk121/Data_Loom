@@ -1,7 +1,6 @@
-"use client"
 
 import { TrendingUp } from "lucide-react"
-import { Pie, PieChart } from "recharts"
+import { LabelList, RadialBar, RadialBarChart } from "recharts"
 
 import {
   Card,
@@ -12,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-
+  
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -49,12 +48,13 @@ const chartConfig = {
     label: "Other",
     color: "hsl(var(--chart-5))",
   },
-} 
-export function Component() {
+}  
+
+function Component() {
   return (
-    <Card className="col-span-3 row-span-7 bg-gray-900 text-gray-100">
+    <Card className="col-span-9 bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart</CardTitle>
+        <CardTitle>Radial Chart - Label</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -62,13 +62,26 @@ export function Component() {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
-          <PieChart>
+          <RadialBarChart
+            data={chartData}
+            startAngle={-90}
+            endAngle={380}
+            innerRadius={30}
+            outerRadius={110}
+          >
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent hideLabel nameKey="browser" />}
             />
-            <Pie data={chartData} dataKey="visitors" nameKey="browser" />
-          </PieChart>
+            <RadialBar dataKey="visitors" background>
+              <LabelList
+                position="insideStart"
+                dataKey="browser"
+                className="fill-white capitalize mix-blend-luminosity"
+                fontSize={11}
+              />
+            </RadialBar>
+          </RadialBarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
@@ -82,5 +95,4 @@ export function Component() {
     </Card>
   )
 }
-
 export default Component;

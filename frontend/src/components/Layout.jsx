@@ -9,9 +9,9 @@ function Layout({children})
     const shouldShowHeaderFooter = !hideHeaderFooterRoutes.includes(location.pathname);
   
     return (
-      <div className="App w-full h-screen  bg-neutral-900 size-full grid grid-cols-12 grid-rows-12">
+      <div className="App w-full h-fit  bg-neutral-900 size-full grid grid-cols-12 auto-rows-auto ">
         {shouldShowHeaderFooter && <Header />}
-        <main className={`col-span-12 row-span-10  grid grid-cols-12 grid-rows-12 gap-4   w-full h-full object-cover text-gray-100`}>
+        <main className={`col-span-12 row-span-10  grid grid-cols-12 auto-rows-auto gap-4 w-full h-full object-cover text-gray-100`}>
           {children}
         </main>
         {shouldShowHeaderFooter && <Footer />}

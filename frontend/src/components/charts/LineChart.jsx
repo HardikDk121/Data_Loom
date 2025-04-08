@@ -33,7 +33,7 @@ const chartConfig = {
 
 export function Component() {
   return (
-    <Card className={`col-span-6 row-span-7 bg-gray-900 `}>
+    <Card className={`col-span-3  bg-gray-900 `}>
       <CardHeader>
         <CardTitle className={`text-gray-100`}>Line Chart</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
