@@ -1,7 +1,14 @@
+
+import { useLocation } from "react-router-dom";
+
 function Header() {
+  const location =useLocation();
+  const name = location.state?.name; 
   return (
-    <header className="col-span-12 row-span-1">
-      <h1 className="text-gray-100 text-2xl   lg:text-5xl font-normal ">DATA LOOM  </h1>
+    <header className="col-span-12 row-span-1 flex justify-center">
+      <img src="/assets/images/logo-cropped.png" alt="" srcset="" className="w-32 self-start" />
+      { name && (
+       <h1 className="text-2xl font-bold mb-4 text-center col-span-12 text-gray-300 self-center ">Welcome Back {name} 👋</h1>)}      
     </header>
   );
 }

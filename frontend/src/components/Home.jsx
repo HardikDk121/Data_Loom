@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Link } from 'react-router-dom'
-import { useLocation } from "react-router-dom";
 import  BarChart   from "./charts/BarChart";
 import LineChart from "./charts/LineChart"; 
 import PieChart from "./charts/PieChart";
@@ -8,12 +6,10 @@ import AreaChart from "./charts/AreaChart";
 import RadialChart from "./charts/RadialChart";
 function Home()
 {
-  const location =useLocation();
-    const name = location.state?.name;
-    
+   
     return(
       <>
-      <h1 className="text-2xl font-bold mb-4  text-center col-span-12 ">Welcome Back {name} 👋</h1>
+
       <div className="row-span-11 col-span-2 flex flex-col  rounded-r-sm sticky top-0 h-fit bg-gray-900 ">
         <h2 className="text-3xl text-gray-100 ">Charts</h2>
         <ul className="list-none  h-40 flex flex-col gap-2 m-4 ">  
