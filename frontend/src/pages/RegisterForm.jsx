@@ -12,8 +12,8 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from './ui/form';
-import { Input } from './ui/input';
+} from '../components/ui/form';
+import { Input } from '../components/ui/input';
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from 'lucide-react';
-import BackgroundImage from './BackgroundImage';
+import BackgroundImage from '../layout/BackgroundImage';
 const FormSchema = z.object(
     {
         email: z.string().email("Invaild email format"),

@@ -1,6 +1,5 @@
-
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -32,19 +31,27 @@ const chartConfig = {
   },
 } 
 
-export function Component() {
+export function BarchartHorizontal() {
   return (
-    <Card className={`col-span-3  bg-gray-900 `}>
+    <Card className={`bg-gray-900 text-gray-300 `}>
       <CardHeader>
-        <CardTitle className={`text-gray-100`}>Bar Chart</CardTitle>
+        <CardTitle>Bar Chart - Horizontal</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            layout="vertical"
+            margin={{
+              left: -20,
+            }}
+          >
+            <XAxis type="number" dataKey="desktop" hide />
+            <YAxis
               dataKey="month"
+              type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -54,12 +61,12 @@ export function Component() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={5} />
           </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none text-gray-300">
+        <div className="flex gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
@@ -69,4 +76,4 @@ export function Component() {
     </Card>
   )
 }
-export default Component;
+export default BarchartHorizontal;

@@ -12,8 +12,8 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from './ui/form';
-import { Input } from './ui/input';
+} from '../components/ui/form';
+import { Input } from '../components/ui/input';
 import {
     Card,
     CardContent,
@@ -25,7 +25,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from 'lucide-react';
-import BackgroundImage from './BackgroundImage';
+import BackgroundImage from '../layout/BackgroundImage';
 const formSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),

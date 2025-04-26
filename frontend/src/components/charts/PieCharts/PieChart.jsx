@@ -50,7 +50,7 @@ const chartConfig = {
     color: "hsl(var(--chart-5))",
   },
 } 
-export function Component() {
+export function PChart() {
   return (
     <Card className="col-span-3  bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
@@ -83,4 +83,4 @@ export function Component() {
   )
 }
 
-export default Component;
+export default PChart;

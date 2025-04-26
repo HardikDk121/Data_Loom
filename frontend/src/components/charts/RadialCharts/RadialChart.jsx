@@ -50,7 +50,7 @@ const chartConfig = {
   },
 }  
 
-function Component() {
+function RChart() {
   return (
     <Card className="col-span-9 bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
@@ -95,4 +95,4 @@ function Component() {
     </Card>
   )
 }
-export default Component;
+export default RChart;
