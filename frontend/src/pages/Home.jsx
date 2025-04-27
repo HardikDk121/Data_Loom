@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button"
-import  BarChart   from "../components/charts/BarCharts/BarChart";
-import LineChart from "../components/charts/LineCharts/LineChart"; 
-import PieChart from "../components/charts/PieCharts/PieChart";
-import AreaChart from "../components/charts/AreaCharts/AreaChart";
-import RadialChart from "../components/charts/RadialCharts/RadialChart";
-import ChartCard from "../components/charts/ChartCard";
+import { BarChart } from "@/components/charts/BarCharts/BarIndex";
+import { LineChart } from "@/components/charts/LineCharts/Lineindex";
+import { PieChart } from "@/components/charts/PieCharts/PieIndex";
+import { AreaChart } from "@/components/charts/AreaCharts/AreaIndex";
+import { RadialChart } from "@/components/charts/RadialCharts/RadialIndex";
+import ChartCard from "@/components/charts/ChartCard";
 
 function Home()
 {
