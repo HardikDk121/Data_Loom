@@ -35,7 +35,7 @@ const chartConfig = {
 
 export function LineChartLinear() {
   return (
-    <Card>
+    <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
         <CardTitle>Line Chart - Linear</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

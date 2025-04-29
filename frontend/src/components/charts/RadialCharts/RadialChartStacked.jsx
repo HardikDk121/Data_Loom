@@ -34,7 +34,7 @@ export function RadialChartStacked() {
   const totalVisitors = chartData[0].desktop + chartData[0].mobile
 
   return (
-    <Card className="flex flex-col">
+    <Card className="col-span-3 bg-gray-900 text-gray-200">
       <CardHeader className="items-center pb-0">
         <CardTitle>Radial Chart - Stacked</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
@@ -55,7 +55,7 @@ export function RadialChartStacked() {
               content={<ChartTooltipContent hideLabel />}
             />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
-              <Label
+              <Label 
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
@@ -63,14 +63,15 @@ export function RadialChartStacked() {
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) - 16}
-                          className="fill-foreground text-2xl font-bold"
+                          className="fill-foreground text-2xl font-bold  "
+                          style={{ fill: "#e5e7eb", fontSize: "1.25rem", fontWeight: "bold" }}
                         >
                           {totalVisitors.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 4}
-                          className="fill-muted-foreground"
+                          className="fill-muted-foreground text-gray-200"
                         >
                           Visitors
                         </tspan>

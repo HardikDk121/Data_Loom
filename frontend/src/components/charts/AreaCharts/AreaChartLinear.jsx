@@ -35,7 +35,7 @@ const chartConfig = {
 
 export function AreaChartLinear() {
   return (
-    <Card>
+    <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
         <CardTitle>Area Chart - Linear</CardTitle>
         <CardDescription>

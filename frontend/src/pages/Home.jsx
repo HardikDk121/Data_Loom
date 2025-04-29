@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { BarChart } from "@/components/charts/BarCharts/BarIndex";
-import { LineChart } from "@/components/charts/LineCharts/Lineindex";
+import { LineChart } from "@/components/charts/LineCharts/LineIndex";
 import { PieChart } from "@/components/charts/PieCharts/PieIndex";
 import { AreaChart } from "@/components/charts/AreaCharts/AreaIndex";
 import { RadialChart } from "@/components/charts/RadialCharts/RadialIndex";
@@ -11,7 +11,6 @@ function Home()
    
     return(
       <>
-
       <div className="row-span-11 col-span-2 flex flex-col  rounded-r-sm sticky top-0 h-fit bg-gray-900 ">
         <h2 className="text-3xl text-gray-100 ">Charts</h2>
         <ul className="list-none  h-50 flex flex-col gap-2 m-4 ">  

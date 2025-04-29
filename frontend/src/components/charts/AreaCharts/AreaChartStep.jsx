@@ -34,7 +34,7 @@ const chartConfig = {
 } 
 export function AreaChartStep() {
   return (
-    <Card>
+    <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
         <CardTitle>Area Chart - Step</CardTitle>
         <CardDescription>

@@ -32,7 +32,7 @@ const chartConfig = {
 } 
 export function BarChartNegative() {
   return (
-    <Card>
+    <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
         <CardTitle>Bar Chart - Negative</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

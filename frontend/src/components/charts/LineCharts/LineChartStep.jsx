@@ -34,7 +34,7 @@ const chartConfig = {
 
 export function LineChartStep() {
   return (
-    <Card>
+    <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
         <CardTitle>Line Chart - Step</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
