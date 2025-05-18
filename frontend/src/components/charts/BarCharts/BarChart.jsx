@@ -34,7 +34,7 @@ const chartConfig = {
 
 export function BChart() {
   return (
-    <Card className={`col-span-3  bg-gray-900 `}>
+    <Card className={`col-span-3 bg-gray-900 `}>
       <CardHeader>
         <CardTitle className={`text-gray-200`}>Bar Chart</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

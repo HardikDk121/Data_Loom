@@ -42,7 +42,7 @@ function ChartCard(props) {
           {props.name}
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[calc(80dvw)] bg-neutral-900 text-gray-200 grid grid-cols-3">
+      <DialogContent className="w-[calc(80dvw)] bg-neutral-900 text-gray-200 grid grid-cols-4">
         <DialogHeader className={`col-span-4`}>
           <DialogTitle className={``}>{props.name}</DialogTitle>
           <DialogDescription className={`w-full`}>
@@ -51,8 +51,8 @@ function ChartCard(props) {
         </DialogHeader>
         
           {charts.map((ChartComponent, index) => (
-            <div className="py-4 col-span-1 space-y-4">
-              <div key={index} className="items-center w-full">
+            <div className="py-4 col-span-1 space-y-4 " key={index}>
+              <div  className="items-center w-full hover:cursor-pointer transition duration-500 hover:scale-105 hover:border-neutral-100 hover:z-50 ">
                 {ChartComponent}
               </div>
             </div>
@@ -64,7 +64,7 @@ function ChartCard(props) {
             type="submit"
             className={`w-full bg-neutral-900 hover:bg-cyan-600`}
           >
-            Save changes
+            Add chart
           </Button>
         </DialogFooter>
       </DialogContent>
