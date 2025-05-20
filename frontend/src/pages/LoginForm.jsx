@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {
     Form,
@@ -33,8 +33,8 @@ const formSchema = z.object({
 function LoginForm() {
     const navigate = useNavigate();
     const [error, setError] = useState("");
-    const handleSubmit = async(data) =>{
-        
+    const handleSubmit = async (data) => {
+
         try {
             const API_URL = import.meta.env.VITE_API_BASE_URL;
             console.log(API_URL);
@@ -44,16 +44,16 @@ function LoginForm() {
             console.log(response.data);
             setError("");
             const name = response.data.name;
-            
+
             navigate("/", { state: { name } });
         }
         catch (error) {
-            setError(error.response.data?.message || "Invalid credentials"  );
+            setError(error.response.data?.message || "Invalid credentials");
             console.error("Error submitting form:", error.response?.data || error.message);
         }
-        
-        
-        
+
+
+
     }
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -91,7 +91,14 @@ function LoginForm() {
                                     <FormMessage />
                                 </FormItem>
                             )} />
-                            <Button type="submit" className=" m-1 bg-rose-600 hover:bg-rose-950">Register</Button>
+                            {error && (
+                                <Alert variant="destructive" className="mb-4  ">
+                                    <AlertCircle className="h-4 w-4" />
+                                    <AlertTitle>Error</AlertTitle>
+                                    <AlertDescription>{error}</AlertDescription>
+                                </Alert>
+                            )}
+                            <Button type="submit" className=" m-1 bg-rose-600 hover:bg-rose-950">Login</Button>
                         </div>
                     </form>
                 </Form>
@@ -104,13 +111,7 @@ function LoginForm() {
             </CardFooter>
         </Card>
         {/* Show alert only if there's an error */}
-      {error && (
-        <Alert variant="destructive" className="mb-4">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
+
     </>
     )
 }

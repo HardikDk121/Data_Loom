@@ -34,7 +34,7 @@ export function RadialChartStacked() {
   const totalVisitors = chartData[0].desktop + chartData[0].mobile
 
   return (
-    <Card className="col-span-3 bg-gray-900 text-gray-200">
+    <Card className=" bg-gray-900 text-gray-200">
       <CardHeader className="items-center pb-0">
         <CardTitle>Radial Chart - Stacked</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
@@ -42,7 +42,7 @@ export function RadialChartStacked() {
       <CardContent className="flex flex-1 items-center pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square w-full max-w-[250px]"
+          className="mx-auto aspect-square w-full "
         >
           <RadialBarChart
             data={chartData}

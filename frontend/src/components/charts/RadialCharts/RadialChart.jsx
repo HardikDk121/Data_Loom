@@ -52,7 +52,7 @@ const chartConfig = {
 
 function RChart() {
   return (
-    <Card className="col-span-9 bg-gray-900 text-gray-100">
+    <Card className=" bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
         <CardTitle>Radial Chart - Label</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
@@ -60,7 +60,7 @@ function RChart() {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square "
         >
           <RadialBarChart
             data={chartData}

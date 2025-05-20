@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 
 const datasetSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String },
-    fileURL: { type: String, required: true }, // Path to uploaded dataset (CSV, JSON, etc.)
+    chartId: { type: mongoose.Schema.Types.ObjectId , ref: 'Chart',required: true },
+    label: {type: String , required: true},
+    data: {type: [Number],required: true},
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to User
-    createdAt: { type: Date, default: Date.now }
-});
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+},{ timestamps: true });
 
 const Dataset = mongoose.model("Dataset", datasetSchema);
 
