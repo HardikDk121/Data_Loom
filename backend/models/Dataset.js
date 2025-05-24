@@ -2,9 +2,16 @@ import mongoose from 'mongoose';
 
 const datasetSchema = new mongoose.Schema({
     chartId: { type: mongoose.Schema.Types.ObjectId , ref: 'Chart',required: true },
-    label: {type: String , required: true},
-    data: {type: [Number],required: true},
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to User
+    datasets:
+    {   type: [
+            {
+                label: { type: String, required: true },
+                data: { type: [Number], required: true },  
+            }
+        ],
+        required: true
+    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 },{ timestamps: true });

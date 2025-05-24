@@ -28,7 +28,7 @@ function Header() {
 
   const handleRedirectToLogin = () => {
     setShowDialog(false)
-    navigate('/login') // redirect to login page
+    navigate('/Login') // redirect to login page
   }
 
   return (

@@ -51,9 +51,6 @@ function LoginForm() {
             setError(error.response.data?.message || "Invalid credentials");
             console.error("Error submitting form:", error.response?.data || error.message);
         }
-
-
-
     }
     const form = useForm({
         resolver: zodResolver(formSchema),
