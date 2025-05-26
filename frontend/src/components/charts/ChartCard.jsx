@@ -51,8 +51,7 @@ function ChartCard(props) {
     setCharts(chartMap[props.name] || []
     );
   }, [props.name]);
-  const location = useLocation();
-
+ 
   return (
     <Dialog className={`w-screen rounded-none`}>
       <DialogTrigger asChild>
