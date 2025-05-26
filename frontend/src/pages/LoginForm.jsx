@@ -63,7 +63,7 @@ function LoginForm() {
         <BackgroundImage />
         <Card className={` bg-neutral-950 rounded-lg shadow-lg text-white col-span-4 row-span-12 h-full  `}>
             <CardHeader>
-                <CardTitle className={`text-slate-100 text-3xl`}>Login</CardTitle>
+                <CardTitle className={`text-slate-100 text-3xl font-extrabold`}>Login</CardTitle>
             </CardHeader>
             <CardContent>
                 <Form {...form}>

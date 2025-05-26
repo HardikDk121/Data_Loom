@@ -79,7 +79,7 @@ const FormSchema = z.object(
         <BackgroundImage />
         <Card className={` bg-gray-950 rounded-lg shadow-lg col-span-4 row-span-12`}>
             <CardHeader>
-                <CardTitle className={`text-slate-100 text-3xl  `}>Register</CardTitle>
+                <CardTitle className={`text-slate-100 text-3xl font-extrabold `}>Register</CardTitle>
             </CardHeader>
             <CardContent>
                 <Form {...form}>

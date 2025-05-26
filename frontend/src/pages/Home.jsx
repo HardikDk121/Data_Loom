@@ -12,7 +12,7 @@ function Home() {
     <>
       <div className=" row-span-11 col-span-2 flex flex-col  rounded-r-sm sticky top-0   bg-gray-900 ">
         <h2 className="text-3xl text-gray-100 ">Charts</h2>
-        <ul className="list-none   flex flex-col gap-2 m-4 ">
+        <ul className="list-none  flex flex-col gap-2 mt-4 font-bold  ">
           <li className="flex-1  rounded-xs text-blue-400" >
             <ChartCard name={`Bar`} />
           </li>
