@@ -27,7 +27,6 @@ import { useLocation } from "react-router-dom";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -51,7 +50,7 @@ function ChartCard(props) {
     setCharts(chartMap[props.name] || []
     );
   }, [props.name]);
- 
+
   return (
     <Dialog className={`w-screen rounded-none`}>
       <DialogTrigger asChild>
@@ -93,7 +92,7 @@ function ChartCard(props) {
                 {ChartComponent}
               </div>
               <div className="col-span-8">
-                <FormComponent chartSection={props.name} chartNo={index + 1 } />
+                <FormComponent chartSection={props.name} chartNo={index + 1} />
               </div>
 
 
