@@ -1,9 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { BarChart } from "@/components/charts/BarCharts/BarIndex";
-import { LineChart } from "@/components/charts/LineCharts/LineIndex";
-import { PieChart } from "@/components/charts/PieCharts/PieIndex";
-import { AreaChart } from "@/components/charts/AreaCharts/AreaIndex";
-import { RadialChart } from "@/components/charts/RadialCharts/RadialIndex";
 import ChartCard from "@/components/charts/ChartCard";
 
 function Home() {
@@ -32,22 +27,22 @@ function Home() {
         <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}>Log out</Button>
       </div>
       <div className="row-span-11 col-span-10 grid grid-cols-12 auto-rows-fr grid-flow-dense gap-4  min-h-fit">
-        <NoCharts/>
+        <NoCharts />
 
       </div>
     </>)
 }
 
 function NoCharts(params) {
-  return(<>
-        <img src="assets/images/empty-concept-illustration.png" className="col-span-6 opacity-80 rounded-2xl w-full block m-auto " />
-        <div className="col-span-6 flex flex-col justify-center gap-4   ">
-            <h2 className="text-4xl mb-2 font-semibold   ">Wow so empty</h2>
-            <p className={"text-gray-300 text-16px"}>
-              Add some charts to the dashboard to get started.
-            </p>
-        </div>
-        </>
+  return (<>
+    <img src="assets/images/empty-concept-illustration.png" className="col-span-6 opacity-80 rounded-2xl w-full block m-auto " />
+    <div className="col-span-6 flex flex-col justify-center gap-4   ">
+      <h2 className="text-4xl mb-2 font-semibold   ">Wow so empty</h2>
+      <p className={"text-gray-300 text-16px"}>
+        Add some charts to the dashboard to get started.
+      </p>
+    </div>
+  </>
   )
 }
 export default Home;

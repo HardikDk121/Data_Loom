@@ -22,7 +22,7 @@ import { z } from "zod"
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "react-router-dom";
-
+import axios from "axios";
 
 import {
   Form,
@@ -133,10 +133,12 @@ const onSelectChart = (ChartComponent) => {
 }
 
 const formSchema = z.object({
-  type: z.enum(["Bar", "Line", "Pie", "Area", "Radial"], {
-    title: z.string().min(1, "Title is required"),
-    errorMap: () => ({ message: "Please select a valid chart type" }),
-  }),
+  type: z.string()
+    .trim()
+    .regex(/^(Bar|Line|Pie|Area|Radial)-[1-5]$/i, {
+      message: "Please select a valid chart type",
+    }),
+  title: z.string().min(1, "Title is required"),
   description: z.string().optional(),
   datasets: z.array(
     z.object({
@@ -154,13 +156,14 @@ const formSchema = z.object({
   user: z.string(),
   createdAt: z.date(),
 })
+
 const FormComponent = (props) => {
 
   const location = useLocation();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      type: "",
+      type: `${props.chartSection}-${props.chartNo}`,
       title: "",
       description: "",
       datasets: [{ label: "", data: [] }],
@@ -168,8 +171,20 @@ const FormComponent = (props) => {
       createdAt: new Date(),
     }
   });
-  const handleSumbit = async (data) => {
-    console.log("Form submitted with data:", data);
+  const handleSumbit = async (formData) => {
+    try {
+      console.log("Form submitted with data:", formData);
+      const apiurl = import.meta.VITE_API_URL;
+      const response = await axios.post(`${apiurl}/newchart`,
+        {
+          'contenct-type': 'application / json',
+          'body': JSON.stringify(FormData),
+        });
+    }
+    catch (error) {
+      console.error(error);
+    }
+
   }
   const { fields, append, remove } = useFieldArray({
     control: form.control,
@@ -185,7 +200,7 @@ const FormComponent = (props) => {
             <FormItem>
               <FormLabel>Chart Type</FormLabel>
               <FormControl>
-                <Input {...field} value={`${props.chartSection} - ${props.chartNo}`} disabled />
+                <Input {...field} value={`${props.chartSection}-${props.chartNo}`} readOnly />
               </FormControl>
               <FormMessage />
             </FormItem>

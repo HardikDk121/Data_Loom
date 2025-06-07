@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./routes/user-router.js";
+import chartRouter from "./routes/chart-router.js"
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from "./config/db.js";
@@ -12,14 +13,14 @@ app.use(express.json());
 connectDB();
 
 app.use(
-    cors({
-        origin: "http://localhost:5173", 
-        methods: "GET,POST,PUT,DELETE",
-        credentials: true, 
-    })
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
 );
-app.use("/api/users",userRouter);
+app.use("/api/users", userRouter);
+app.use("/api/charts", chartRouter);
 
-
-app.listen(PORT,()=> 
-    console.log(`Express server running on: http://localhost:${PORT} `))
+app.listen(PORT, () =>
+  console.log(`Express server running on: http://localhost:${PORT} `))
