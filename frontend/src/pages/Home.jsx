@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button"
 import ChartCard from "@/components/charts/ChartCard";
-
+import { FaRegChartBar } from "react-icons/fa";
+import { FaChartLine } from "react-icons/fa";
+import { FaChartArea } from "react-icons/fa";
+import { GrRadial } from "react-icons/gr";
+import { FaChartPie } from "react-icons/fa";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 function Home() {
 
   return (
@@ -9,22 +14,22 @@ function Home() {
         <h2 className="text-3xl text-gray-100 ">Charts</h2>
         <ul className="list-none  flex flex-col gap-2 mt-4 font-bold  ">
           <li className="flex-1  rounded-xs text-blue-400" >
-            <ChartCard name={`Bar`} />
+            <ChartCard name={`Bar`} icon={FaRegChartBar} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Line`} />
+            <ChartCard name={`Line`} icon={FaChartLine} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Pie`} />
+            <ChartCard name={`Pie`} icon={FaChartPie} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Radial`} />
+            <ChartCard name={`Radial`} icon={GrRadial} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Area`} />
+            <ChartCard name={`Area`} icon={FaChartArea} />
           </li>
         </ul>
-        <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}>Log out</Button>
+        <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}><RiLogoutBoxRLine className="inline" />Log out</Button>
       </div>
       <div className="row-span-11 col-span-10 grid grid-cols-12 auto-rows-fr grid-flow-dense gap-4  min-h-fit">
         <NoCharts />

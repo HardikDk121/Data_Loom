@@ -57,12 +57,12 @@ function ChartCard(props) {
         <Button
           variant=""
           className="w-full  rounded-none bg-purple-800 hover:bg-purple-700 text-gray-200 text-md font-extralight text-start ">
-          {props.name}
+          <props.icon />{props.name}
         </Button>
       </DialogTrigger>
       <DialogContent className="w-[calc(80dvw)] bg-neutral-900 text-gray-200 grid grid-cols-4">
         <DialogHeader className={`col-span-4`}>
-          <DialogTitle className={``}>{props.name}</DialogTitle>
+          <DialogTitle className={``}><props.icon className={`inline m-1`} />{props.name}</DialogTitle>
           <DialogDescription className={`w-full`}>
             Add a new {props.name} to your collection
           </DialogDescription>
@@ -82,7 +82,7 @@ function ChartCard(props) {
             <DialogContent className={`grid grid-cols-12 w-[calc(80dvw)] bg-neutral-900 text-gray-200 max-h-[80vh] overflow-y-auto `} >
               <DialogHeader className={`col-span-12`}>
                 <DialogTitle className={`text-gray-200`}>
-                  {props.name} Chart {index + 1}
+                  <props.icon className={`inline m-1`} />{props.name} Chart {index + 1}
                 </DialogTitle>
                 <DialogDescription className={`text-gray-400`}>
                   Click to add this chart to your collection.
@@ -110,7 +110,8 @@ function ChartCard(props) {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        ))}
+        ))
+        }
 
 
         <DialogFooter className={`col-span-4`}>
@@ -123,8 +124,8 @@ function ChartCard(props) {
           </Button>
            */}
         </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </DialogContent >
+    </Dialog >
   );
 }
 const onSelectChart = (ChartComponent) => {
