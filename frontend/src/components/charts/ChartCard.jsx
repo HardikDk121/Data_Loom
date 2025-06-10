@@ -115,14 +115,6 @@ function ChartCard(props) {
 
 
         <DialogFooter className={`col-span-4`}>
-          {/*
-          <Button
-            type="submit"
-            className={`w-full bg-neutral-900 hover:bg-cyan-600`}
-          >
-            Add chart
-          </Button>
-           */}
         </DialogFooter>
       </DialogContent >
     </Dialog >
@@ -175,17 +167,24 @@ const FormComponent = (props) => {
   const handleSumbit = async (formData) => {
     try {
       console.log("Form submitted with data:", formData);
-      const apiurl = import.meta.VITE_API_URL;
-      const response = await axios.post(`${apiurl}/newchart`,
-        {
-          'contenct-type': 'application / json',
-          'body': JSON.stringify(FormData),
-        });
+      const API_URL = import.meta.env.VITE_API_BASE_URL;
+      console.log(API_URL)
+      const response = await axios.post(`${API_URL}/charts/new-chart`, formData);
+      console.log("ok response ", response.status)
     }
     catch (error) {
-      console.error(error);
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        console.error('Error status:', error.response.status);
+        console.error('Error data:', error.response.data);
+      } else if (error.request) {
+        // No response received
+        console.error('No response received:', error.request);
+      } else {
+        // Error setting up the request
+        console.error('Axios error:', error.message);
+      }
     }
-
   }
   const { fields, append, remove } = useFieldArray({
     control: form.control,
@@ -201,7 +200,7 @@ const FormComponent = (props) => {
             <FormItem>
               <FormLabel>Chart Type</FormLabel>
               <FormControl>
-                <Input {...field} value={`${props.chartSection}-${props.chartNo}`} readOnly />
+                <Input {...field} value={`${props.chartSection} - ${props.chartNo}`} readOnly />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -292,7 +291,7 @@ const FormComponent = (props) => {
         <Button
           type="button"
           onClick={() => append({ label: "", data: [] })}
-          className={` bg-green-800 hover:bg-green-600 text-gray-200`}
+          className={` bg - green - 800 hover: bg - green - 600 text - gray - 200`}
         >
           Add Dataset
         </Button>
