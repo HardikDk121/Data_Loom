@@ -56,7 +56,8 @@ function RegisterForm() {
       setError("");
       console.log(response.data);
       const name = response.data.name;
-      navigate("/", { state: { name } });
+      const id = response.data.id;
+      navigate("/", { state: { name, id } });
     }
     catch (error) {
       setError(error.response.data?.message || "Something went wrong please try again later");
@@ -132,7 +133,7 @@ function RegisterForm() {
         </CardContent>
         <CardFooter>
           <p className={`text-slate-100`}> Already a user ? </p>
-          <Link to="/Login">
+          <Link to="/login">
             <Button variant={`Link`} className={`text-blue-400 hover:text-blue-400 hover:underline`}>Log in
             </Button>
           </Link>

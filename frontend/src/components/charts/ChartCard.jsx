@@ -121,7 +121,6 @@ function ChartCard(props) {
   );
 }
 const onSelectChart = (ChartComponent) => {
-
   console.log("Selected Chart Component:", ChartComponent);
 }
 
@@ -147,7 +146,7 @@ const formSchema = z.object({
       { message: "Labels must be unique", path: ["datasets"] }
     ),
   user: z.string(),
-  createdAt: z.date(),
+  id: z.string(), createdAt: z.date(),
 })
 
 const FormComponent = (props) => {
@@ -161,6 +160,7 @@ const FormComponent = (props) => {
       description: "",
       datasets: [{ label: "", data: [] }],
       user: location.state?.name,
+      id: location.state?.id,
       createdAt: new Date(),
     }
   });
@@ -168,7 +168,6 @@ const FormComponent = (props) => {
     try {
       console.log("Form submitted with data:", formData);
       const API_URL = import.meta.env.VITE_API_BASE_URL;
-      console.log(API_URL)
       const response = await axios.post(`${API_URL}/charts/new-chart`, formData);
       console.log("ok response ", response.status)
     }

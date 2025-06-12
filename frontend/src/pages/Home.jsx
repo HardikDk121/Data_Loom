@@ -6,8 +6,12 @@ import { FaChartArea } from "react-icons/fa";
 import { GrRadial } from "react-icons/gr";
 import { FaChartPie } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 function Home() {
-
+  const navigate = useNavigate();
+  const redirectToLogin = () => {
+    navigate("/login")
+  }
   return (
     <>
       <div className=" row-span-11 col-span-2 flex flex-col  rounded-r-sm sticky top-0   bg-gray-900 ">
@@ -29,7 +33,9 @@ function Home() {
             <ChartCard name={`Area`} icon={FaChartArea} />
           </li>
         </ul>
-        <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}><RiLogoutBoxRLine className="inline" />Log out</Button>
+        <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}
+          onClick={() => redirectToLogin()}
+        ><RiLogoutBoxRLine className="inline" />Log out</Button>
       </div>
       <div className="row-span-11 col-span-10 grid grid-cols-12 auto-rows-fr grid-flow-dense gap-4  min-h-fit">
         <NoCharts />

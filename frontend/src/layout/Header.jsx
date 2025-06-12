@@ -1,5 +1,5 @@
 
-import { useLocation ,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   Dialog,
@@ -28,15 +28,15 @@ function Header() {
 
   const handleRedirectToLogin = () => {
     setShowDialog(false)
-    navigate('/Login') // redirect to login page
+    navigate('/login') // redirect to login page
   }
 
   return (
     <>
       <Dialog open={showDialog} onOpenChange={setShowDialog} >
-        <DialogContent className="bg-cyan-950 " 
-        onPointerDownOutside={(e) => e.preventDefault()}
-        onInteractOutside={(e) => e.preventDefault()}
+        <DialogContent className="bg-cyan-950 "
+          onPointerDownOutside={(e) => e.preventDefault()}
+          onInteractOutside={(e) => e.preventDefault()}
         >
           <DialogHeader>
             <DialogTitle className="text-gray-200">Access Denied</DialogTitle>

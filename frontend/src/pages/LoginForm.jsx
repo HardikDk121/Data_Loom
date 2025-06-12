@@ -44,7 +44,8 @@ function LoginForm() {
       console.log(response.data);
       setError("");
       const name = response.data.name;
-      navigate("/", { state: { name } });
+      const id = response.data.id;
+      navigate("/", { state: { name, id } });
     }
     catch (error) {
       setError(error.response.data?.message || "Invalid credentials");
@@ -101,7 +102,7 @@ function LoginForm() {
       </CardContent>
       <CardFooter>
         <p className={`text-slate-100`}> New to data Loom ? </p>
-        <Link to="/Register">
+        <Link to="/register">
           <Button variant={`Link`} className={`text-blue-400 hover:text-blue-400 hover:underline`}>Register </Button>
         </Link>
       </CardFooter>
