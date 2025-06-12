@@ -6,11 +6,10 @@ const chartRouter = express.Router();
 chartRouter.post("/new-chart", (req, res) => {
   const chartData = req.body;
 
-  const { type, title, descrtiption, user } = chartData;
-  const { datasets } = chartData;
+  const { type, title, descrtiption, user, id, datasets } = chartData;
 
-  const chartObj = { type, title, descrtiption, user }
-  const datasetobj = { datasets }
+  const chartObj = { type, title, descrtiption, user, id }
+  const datasetobj = { datasets, user, id }
 
   const chartDocument = new Chart(chartObj);
   const datasetDocument = new Dataset(datasetobj);
