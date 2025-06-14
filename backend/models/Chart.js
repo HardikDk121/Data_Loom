@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const chartSchema = new mongoose.Schema({
   title: { type: String, required: true },
   type: { type: String, required: true },

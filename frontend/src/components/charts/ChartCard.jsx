@@ -145,7 +145,6 @@ const formSchema = z.object({
       },
       { message: "Labels must be unique", path: ["datasets"] }
     ),
-  user: z.string(),
   id: z.string(), createdAt: z.date(),
 })
 
@@ -159,10 +158,13 @@ const FormComponent = (props) => {
       title: "",
       description: "",
       datasets: [{ label: "", data: [] }],
-      user: location.state?.name,
       id: location.state?.id,
       createdAt: new Date(),
     }
+  });
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "datasets",
   });
   const handleSumbit = async (formData) => {
     try {
@@ -170,6 +172,7 @@ const FormComponent = (props) => {
       const API_URL = import.meta.env.VITE_API_BASE_URL;
       const response = await axios.post(`${API_URL}/charts/new-chart`, formData);
       console.log("ok response ", response.status)
+
     }
     catch (error) {
       if (error.response) {
@@ -185,10 +188,6 @@ const FormComponent = (props) => {
       }
     }
   }
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: "datasets",
-  });
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSumbit)} className="space-y-4" id="chart-form">

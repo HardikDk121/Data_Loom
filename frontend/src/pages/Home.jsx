@@ -6,12 +6,34 @@ import { FaChartArea } from "react-icons/fa";
 import { GrRadial } from "react-icons/gr";
 import { FaChartPie } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Home() {
   const navigate = useNavigate();
   const redirectToLogin = () => {
     navigate("/login")
   }
+  const [userCharts, setUserCharts] = useState({});
+  const location = useLocation();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const API_URL = import.meta.env.VITE_API_BASE_URL;
+        const userId = location.state?.id;
+        const respone = await axios.post(`${API_URL}/charts/find-charts`, userId);
+        if (respone.data) {
+          console.log(respone.data);
+        }
+      }
+      catch (error) {
+        console.error("error: occured: \n", error);
+      }
+    }
+    fetchData()
+  }, [])
   return (
     <>
       <div className=" row-span-11 col-span-2 flex flex-col  rounded-r-sm sticky top-0   bg-gray-900 ">
