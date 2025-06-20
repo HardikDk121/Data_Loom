@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  
+
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -48,9 +48,10 @@ const chartConfig = {
     label: "Other",
     color: "hsl(var(--chart-5))",
   },
-}  
+}
 
-function RChart() {
+function RChart(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className=" bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
@@ -63,7 +64,7 @@ function RChart() {
           className="mx-auto aspect-square "
         >
           <RadialBarChart
-            data={chartData}
+            data={data}
             startAngle={-90}
             endAngle={380}
             innerRadius={30}

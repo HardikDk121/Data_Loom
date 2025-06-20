@@ -29,9 +29,11 @@ const chartConfig = {
     label: "Desktop",
     color: "hsl(var(--chart-1))",
   },
-} 
+}
 
-export function BarchartHorizontal() {
+export function BarchartHorizontal(props) {
+
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={`bg-gray-900 text-gray-300 `}>
       <CardHeader>
@@ -42,7 +44,7 @@ export function BarchartHorizontal() {
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
-            data={chartData}
+            data={data}
             layout="vertical"
             margin={{
               left: -20,

@@ -33,9 +33,11 @@ const chartConfig = {
     label: "Mobile",
     color: "hsl(var(--chart-3))",
   },
-} 
+}
 
-export function BarChartMultiple() {
+export function BarChartMultiple(props) {
+
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={`bg-gray-900 text-gray-200`}>
       <CardHeader>
@@ -44,7 +46,7 @@ export function BarChartMultiple() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"

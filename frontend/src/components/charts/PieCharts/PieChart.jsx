@@ -49,8 +49,9 @@ const chartConfig = {
     label: "Other",
     color: "hsl(var(--chart-5))",
   },
-} 
-export function PChart() {
+}
+export function PChart(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className="col-span-3  bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
@@ -67,7 +68,7 @@ export function PChart() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Pie data={chartData} dataKey="visitors" nameKey="browser" />
+            <Pie data={data} dataKey="visitors" nameKey="browser" />
           </PieChart>
         </ChartContainer>
       </CardContent>

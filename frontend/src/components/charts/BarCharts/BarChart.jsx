@@ -30,9 +30,10 @@ const chartConfig = {
     label: "Desktop",
     color: "hsl(var(--chart-1))",
   },
-} 
+}
 
-export function BChart() {
+export function BChart(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={`col-span-3 bg-gray-900 `}>
       <CardHeader>
@@ -41,7 +42,7 @@ export function BChart() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"

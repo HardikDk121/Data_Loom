@@ -21,7 +21,7 @@ chartRouter.post("/new-chart", async (req, res) => {
     if (chartDocument && datasetDocument) {
       await chartDocument.save();
       await datasetDocument.save();
-      console.log("documetns saved")
+      console.log("documetns saved\n ", chartDocument, "\n", datasetDocument)
       res.status(200).send("OK");
     }
   } catch (error) {
@@ -33,10 +33,11 @@ chartRouter.post("/deleate-chart", async (req, res) => {
   if (chartData) res.status(200).send("OK");
 })
 chartRouter.post("/find-charts", async (req, res) => {
-  const userId = req.body;
-  console.log(userId);
-
-  res.send({}).status(200);
+  const id = req.body.id;
+  console.log(id);
+  const userCharts = await Chart.find({ user: id }).populate({ path: "datasetsId", select: "datasets" });
+  console.log(userCharts);
+  res.json(userCharts).status(200);
 })
 export default chartRouter;
 

@@ -29,9 +29,10 @@ const chartConfig = {
     label: "Desktop",
     color: "hsl(var(--chart-1))",
   },
-} 
+}
 
-export function LChart() {
+export function LChart(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={`col-span-3  bg-gray-900 `}>
       <CardHeader>
@@ -42,7 +43,7 @@ export function LChart() {
         <ChartContainer config={chartConfig}>
           <LineChart
             accessibilityLayer
-            data={chartData}
+            data={data}
             margin={{
               left: 12,
               right: 12,

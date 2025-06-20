@@ -14,18 +14,18 @@ function Home() {
   const redirectToLogin = () => {
     navigate("/login")
   }
-  const [userCharts, setUserCharts] = useState({});
   const location = useLocation();
-
+  const [userCharts, setUserCharts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
 
         const API_URL = import.meta.env.VITE_API_BASE_URL;
         const userId = location.state?.id;
-        const respone = await axios.post(`${API_URL}/charts/find-charts`, userId);
+        const respone = await axios.post(`${API_URL}/charts/find-charts`, { id: userId });
         if (respone.data) {
-          console.log(respone.data);
+          console.log(respone.data)
+          setUserCharts(respone.data)
         }
       }
       catch (error) {
@@ -46,13 +46,13 @@ function Home() {
             <ChartCard name={`Line`} icon={FaChartLine} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Pie`} icon={FaChartPie} />
+            <ChartCard name={`Area`} icon={FaChartArea} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
             <ChartCard name={`Radial`} icon={GrRadial} />
           </li>
           <li className="flex-1  rounded-xs text-blue-400">
-            <ChartCard name={`Area`} icon={FaChartArea} />
+            <ChartCard name={`Pie`} icon={FaChartPie} />
           </li>
         </ul>
         <Button className={`bg-red-600 hover:bg-red-700 rounded-none rounded-r-sm box-border mt-auto `}
@@ -60,13 +60,15 @@ function Home() {
         ><RiLogoutBoxRLine className="inline" />Log out</Button>
       </div>
       <div className="row-span-11 col-span-10 grid grid-cols-12 auto-rows-fr grid-flow-dense gap-4  min-h-fit">
-        <NoCharts />
-
+        {!userCharts.length ? (<NoCharts />) : (userCharts.map((chart, index) => {
+          return (<p key={index}>{chart.title}</p>)
+        }
+        ))}
       </div>
     </>)
 }
 
-function NoCharts(params) {
+function NoCharts() {
   return (<>
     <img src="assets/images/empty-concept-illustration.png" className="col-span-6 opacity-80 rounded-2xl w-full block m-auto " />
     <div className="col-span-6 flex flex-col justify-center gap-4   ">

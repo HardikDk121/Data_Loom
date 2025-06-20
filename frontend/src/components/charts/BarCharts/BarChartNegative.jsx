@@ -29,8 +29,10 @@ const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-} 
-export function BarChartNegative() {
+}
+export function BarChartNegative(props) {
+
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={` bg-gray-900 text-gray-200`}>
       <CardHeader>
@@ -39,7 +41,7 @@ export function BarChartNegative() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <ChartTooltip
               cursor={false}

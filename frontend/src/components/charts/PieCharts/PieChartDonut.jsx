@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  
+
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -48,8 +48,9 @@ const chartConfig = {
     label: "Other",
     color: "hsl(var(--chart-5))",
   },
-} 
-export function PieChartDonut() {
+}
+export function PieChartDonut(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className="col-span-3 bg-gray-900 text-gray-100">
       <CardHeader className="items-center pb-0">
@@ -67,7 +68,7 @@ export function PieChartDonut() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={chartData}
+              data={data}
               dataKey="visitors"
               nameKey="browser"
               innerRadius={60}

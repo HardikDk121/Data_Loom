@@ -33,7 +33,8 @@ const chartConfig = {
   },
 }
 
-export function LineChartLinear() {
+export function LineChartLinear(props) {
+  const data = props.data ? props.data : chartData;
   return (
     <Card className={`col-span-3 bg-gray-900 text-gray-200`}>
       <CardHeader>
@@ -44,7 +45,7 @@ export function LineChartLinear() {
         <ChartContainer config={chartConfig}>
           <LineChart
             accessibilityLayer
-            data={chartData}
+            data={data}
             margin={{
               left: 12,
               right: 12,

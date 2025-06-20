@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  
+
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -28,11 +28,11 @@ const chartConfig = {
     label: "Mobile",
     color: "hsl(var(--chart-2))",
   },
-} 
+}
 
-export function RadialChartStacked() {
-  const totalVisitors = chartData[0].desktop + chartData[0].mobile
-
+export function RadialChartStacked(props) {
+  const data = props.data ? props.data : chartData;
+  const totalVisitors = data[0].desktop + data[0].mobile
   return (
     <Card className=" bg-gray-900 text-gray-200">
       <CardHeader className="items-center pb-0">
@@ -45,7 +45,7 @@ export function RadialChartStacked() {
           className="mx-auto aspect-square w-full "
         >
           <RadialBarChart
-            data={chartData}
+            data={data}
             endAngle={180}
             innerRadius={80}
             outerRadius={130}
@@ -55,7 +55,7 @@ export function RadialChartStacked() {
               content={<ChartTooltipContent hideLabel />}
             />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
-              <Label 
+              <Label
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
