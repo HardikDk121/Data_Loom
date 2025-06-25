@@ -13,7 +13,7 @@ function Layout({ children }) {
 
       {shouldShowHeaderFooter && <Header />}
 
-      <main className={`col-span-12 row-span-10  grid grid-cols-12 auto-rows-auto  w-full h-full object-cover text-gray-100`}>
+      <main className={`col-span-12 row-span-10  grid grid-cols-12 auto-rows-auto gap-4 w-full h-full object-cover text-gray-100`}>
 
         {children}
       </main>

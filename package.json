@@ -7,6 +7,6 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm run dev\""
+    "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && yarn dev\""
   }
 }
