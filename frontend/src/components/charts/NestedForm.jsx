@@ -1,60 +1,58 @@
 import { useFieldArray } from "react-hook-form";
-const NestedForm = () => {
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 
-  const { fields, append, remove } = useFieldArray(
-    {
+const NestedForm = ({ control, index, register }) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: `dataSets.${index}.dataList`,
+  });
 
-    });
   return (
-    <>   {
-      fields.map((field, index) => (
-        <div key={field.id} className="border p-4 rounded space-y-2">
+    <div className="space-y-2  ">
+      {fields.map((field, dataIndex) => (
+        <div key={field.id} className="border p-2 rounded  ">
           <FormField
-            control={form.control}
-            name={`datasets.${index}.dataKey`}
+            control={control}
+            name={`dataSets.${index}.dataList.${dataIndex}.label`}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Label</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter label" {...field} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
           <FormField
-            control={form.control}
-            name={`datasets.${index}.data`}
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Data </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      {...field}
-                      step="any"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            control={control}
+            name={`dataSets.${index}.dataList.${dataIndex}.data`}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Data</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-
-          <Button
-            type="button"
-            variant="destructive"
-            onClick={() => remove(index)}
-          >
-            Remove Dataset
+          <Button type="button" onClick={() => remove(dataIndex)} className="bg-red-500 mt-4 ">
+            Remove this Data
           </Button>
         </div>
-      ))
-    }
-      < Button type="button" onClick={() => append({ label: "", data: [] })} className={` bg - green - 800 hover: bg - green - 600 text - gray - 200`}> Add Dataset</Button >
-    </>
-  )
-}
+      ))}
+      <Button
+        type="button"
+        className="bg-green-600"
+        onClick={() => append({ label: "", data: 0 })}
+      >
+        Insert new Data
+      </Button>
+    </div>
+  );
+};
+
 export default NestedForm;
