@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 import { barChartsArray } from "./BarCharts/BarIndex";
 import { lineChartsArray } from "./LineCharts/LineIndex";
