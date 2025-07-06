@@ -77,7 +77,7 @@ function ChartCard(props) {
                   Click to add this chart to your collection.
                 </DialogDescription>
               </DialogHeader>
-              <div className="col-span-4 py-4 space-y-4 ">
+              <div className="col-span-4 py-4 space-y-4  ">
                 {ChartComponent}
               </div>
               <div className="col-span-8">

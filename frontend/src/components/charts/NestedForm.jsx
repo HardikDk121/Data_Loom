@@ -12,7 +12,7 @@ const NestedForm = ({ control, index, register }) => {
   return (
     <div className="space-y-2  ">
       {fields.map((field, dataIndex) => (
-        <div key={field.id} className="border p-2 rounded  ">
+        <div key={field.id} className="border p-2 rounded flex gap-4 ">
           <FormField
             control={control}
             name={`dataSets.${index}.dataList.${dataIndex}.label`}
@@ -33,7 +33,7 @@ const NestedForm = ({ control, index, register }) => {
               <FormItem>
                 <FormLabel>Data</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} />
+                  <Input type="number" {...field} onChange={(e) => Number(e.target.value)} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

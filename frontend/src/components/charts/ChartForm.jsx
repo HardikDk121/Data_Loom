@@ -23,7 +23,7 @@ const FormComponent = (props) => {
           dataList: [{ label: "", data: 0 }],
         },
       ],
-      id: location.state?.id ?? crypto.randomUUID(),
+      id: location.state?.id,
       createdAt: new Date(),
     },
   });
@@ -39,7 +39,7 @@ const FormComponent = (props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4" id="chart-form">
         <FormField
           control={form.control}
           name="type"
@@ -84,23 +84,32 @@ const FormComponent = (props) => {
 
         {fields.map((field, index) => (
           <div key={field.id} className="border p-4 rounded space-y-2">
-            <FormField
-              control={form.control}
-              name={`dataSets.${index}.dataKey`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>DataKey</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <NestedForm control={form.control} register={form.register} index={index} />
-            <Button type="button" onClick={() => remove(index)} className="bg-red-500 mt-2">
-              Remove this DataKey
-            </Button>
+            <div className="flex w-full items-center gap-4">
+              <FormField
+                control={form.control}
+                name={`dataSets.${index}.dataKey`}
+                render={({ field }) => (
+                  <FormItem className="w-1/3">
+                    <FormLabel>DataKey</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type="button"
+                onClick={() => remove(index)}
+                className="bg-red-500 mt-6 whitespace-nowrap"
+              >
+                Remove Group
+              </Button>
+            </div>
+
+            {/* Nested form */}
+            <NestedForm control={form.control} register={form.register} index={index} className="w-full" />
           </div>
         ))}
 
