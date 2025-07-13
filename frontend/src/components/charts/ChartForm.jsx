@@ -10,7 +10,6 @@ import { useLocation } from "react-router-dom";
 
 const FormComponent = (props) => {
   const location = useLocation();
-
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -20,7 +19,7 @@ const FormComponent = (props) => {
       dataSets: [
         {
           dataKey: "",
-          dataList: [{ label: "", data: 0 }],
+          dataList: [{ label: "", }],
         },
       ],
       id: location.state?.id,
@@ -75,7 +74,7 @@ const FormComponent = (props) => {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <textarea {...field} className="w-full border p-2" />
+                <textarea {...field} className="w-full border p-2" placeholder="Provide a description here (optional)" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -92,7 +91,7 @@ const FormComponent = (props) => {
                   <FormItem className="w-1/3">
                     <FormLabel>DataKey</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input {...field} placeholder="ex . month , date ,year  " />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -119,7 +118,7 @@ const FormComponent = (props) => {
           onClick={() =>
             append({
               dataKey: "",
-              dataList: [{ label: "", data: 0 }],
+              dataList: [{ label: "", }],
             })
           }
         >

@@ -9,8 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { barChartsArray } from "./BarCharts/BarIndex";
 import { lineChartsArray } from "./LineCharts/LineIndex";
 import { pieChartsArray } from "./PieCharts/PieIndex";
@@ -83,7 +82,6 @@ function ChartCard(props) {
               <div className="col-span-8">
                 <FormComponent chartSection={props.name} chartNo={index + 1} />
               </div>
-
 
               <DialogFooter className="col-span-12">
                 <div className=" w-full bg-neutral-900 text-gray-200  ">

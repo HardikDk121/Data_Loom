@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const dataSetSchema = z.object({
   label: z.string().min(1, { message: "Label is required" }),
-  data: z.number().min(1, { message: "Data is required" }),
+  data: z.number().min(0, { message: "Data is required" }),
 });
 
 export const dataKeySchema = z.object({

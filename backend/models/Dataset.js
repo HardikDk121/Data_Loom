@@ -7,8 +7,10 @@ const datasetSchema = new mongoose.Schema({
     type: [
       {
         dataKey: { type: String },
-        label: { type: String, required: true },
-        data: { type: [Number], required: true },
+        type: [{
+          label: { type: String, required: true },
+          data: { type: Number, required: true }
+        }],
       }
     ],
     required: true

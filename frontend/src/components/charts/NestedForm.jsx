@@ -2,6 +2,7 @@ import { useFieldArray } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { useState } from "react";
 
 const NestedForm = ({ control, index, register }) => {
   const { fields, append, remove } = useFieldArray({
@@ -20,7 +21,7 @@ const NestedForm = ({ control, index, register }) => {
               <FormItem>
                 <FormLabel>Label</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} placeholder="ex. date,month,year" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -29,15 +30,21 @@ const NestedForm = ({ control, index, register }) => {
           <FormField
             control={control}
             name={`dataSets.${index}.dataList.${dataIndex}.data`}
-            render={({ field }) => (
+            render={({ field }) =>
+            (
               <FormItem>
                 <FormLabel>Data</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} onChange={(e) => Number(e.target.value)} />
+                  <Input type="number" value={field.value}
+                    onChange={(e) => {
+                      const parsed = Number(e.target.value);
+                      field.onChange(isNaN(parsed) ? "" : parsed);
+                    }} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
-            )}
+            )
+            }
           />
           <Button type="button" onClick={() => remove(dataIndex)} className="bg-red-500 mt-4 ">
             Remove this Data
@@ -47,7 +54,7 @@ const NestedForm = ({ control, index, register }) => {
       <Button
         type="button"
         className="bg-green-600"
-        onClick={() => append({ label: "", data: 0 })}
+        onClick={() => append({ label: "", })}
       >
         Insert new Data
       </Button>
