@@ -4,8 +4,9 @@ import { formSchema } from "./formSchema";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import NestedForm from "./NestedForm";
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import {
+  FormField, FormItem, FormLabel, FormControl, FormMessage
+} from "@/components/ui/form";
 import { useLocation } from "react-router-dom";
 
 const FormComponent = (props) => {
@@ -18,19 +19,20 @@ const FormComponent = (props) => {
       description: "",
       dataSets: [
         {
-          dataKey: "",
-          dataList: [{ label: "", }],
-        },
+          label: "",
+          values: {}
+        }
       ],
-      id: location.state?.id,
+      id: location.state?.id || "",
       createdAt: new Date(),
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "dataSets",
+    name: "dataSets"
   });
+
 
   const handleSubmit = async (data) => {
     console.log("Submitted data:", data);
@@ -74,57 +76,51 @@ const FormComponent = (props) => {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <textarea {...field} className="w-full border p-2" placeholder="Provide a description here (optional)" />
+                <textarea {...field} className="w-full border p-2" placeholder="Optional description" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {fields.map((field, index) => (
-          <div key={field.id} className="border p-4 rounded space-y-2">
-            <div className="flex w-full items-center gap-4">
-              <FormField
-                control={form.control}
-                name={`dataSets.${index}.dataKey`}
-                render={({ field }) => (
-                  <FormItem className="w-1/3">
-                    <FormLabel>DataKey</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="ex . month , date ,year  " />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+        {fields.map((field, index) => {
+          return (
+            <div key={field.id} className="border p-4 rounded space-y-2">
+              <div className="flex justify-between items-center">
+                <FormField
+                  control={form.control}
+                  name={`dataSets.${index}.label`}
+                  render={({ field }) => (
+                    <FormItem className="w-1/2">
+                      <FormLabel>Label</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="e.g., January" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="button" onClick={() => remove(index)} className="bg-red-500">
+                  Remove Dataset
+                </Button>
+              </div>
 
-              <Button
-                type="button"
-                onClick={() => remove(index)}
-                className="bg-red-500 mt-6 whitespace-nowrap"
-              >
-                Remove Group
+              {/* Render dynamic key-value inputs */}
+
+              <Button type="button" onClick={() => append({})} className="bg-blue-600">
+                Add Data Key
               </Button>
             </div>
-
-            {/* Nested form */}
-            <NestedForm control={form.control} register={form.register} index={index} className="w-full" />
-          </div>
-        ))}
+          );
+        })}
 
         <Button
           type="button"
           className="bg-green-600"
-          onClick={() =>
-            append({
-              dataKey: "",
-              dataList: [{ label: "", }],
-            })
-          }
+          onClick={() => append({ label: "", values: {} })}
         >
-          Add new DataKey
+          Add New Dataset Row
         </Button>
-
       </form>
     </Form>
   );

@@ -6,45 +6,27 @@ import { useState } from "react";
 
 const NestedForm = ({ control, index, register }) => {
   const { fields, append, remove } = useFieldArray({
-    control,
-    name: `dataSets.${index}.dataList`,
+    control: control,
+    name: `dataSets.${index}.values`,
   });
 
   return (
     <div className="space-y-2  ">
       {fields.map((field, dataIndex) => (
-        <div key={field.id} className="border p-2 rounded flex gap-4 ">
+        <div key={field.id} className="border p-1 rounded flex gap-4 ">
+
           <FormField
-            control={control}
-            name={`dataSets.${index}.dataList.${dataIndex}.label`}
+            control={form.control}
+            name={`dataSets.${index}.values.${dataIndex}`}
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Label</FormLabel>
+              <FormItem className="w-1/2">
+                <FormLabel>value</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="ex. date,month,year" />
+                  <Input {...field} placeholder="e.g., January" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-          />
-          <FormField
-            control={control}
-            name={`dataSets.${index}.dataList.${dataIndex}.data`}
-            render={({ field }) =>
-            (
-              <FormItem>
-                <FormLabel>Data</FormLabel>
-                <FormControl>
-                  <Input type="number" value={field.value}
-                    onChange={(e) => {
-                      const parsed = Number(e.target.value);
-                      field.onChange(isNaN(parsed) ? "" : parsed);
-                    }} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )
-            }
           />
           <Button type="button" onClick={() => remove(dataIndex)} className="bg-red-500 mt-4 ">
             Remove this Data
