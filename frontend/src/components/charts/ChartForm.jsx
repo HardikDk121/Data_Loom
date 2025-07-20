@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/form";
 import { useLocation } from "react-router-dom";
 
+import NestedForm from "./NestedForm"; // Import the nested form component
 const FormComponent = (props) => {
   const location = useLocation();
   const form = useForm({
@@ -106,7 +107,7 @@ const FormComponent = (props) => {
               </div>
 
               {/* Render dynamic key-value inputs */}
-
+              <NestedForm index={index} control={form.control} register={form.register} />
               <Button type="button" onClick={() => append({})} className="bg-blue-600">
                 Add Data Key
               </Button>
